@@ -1,10 +1,9 @@
 import { useState } from "react";
-
+import { useNavigation } from "@react-navigation/native";
 import {
 	View,
 	Image,
 	Text,
-	TextInput,
 	TouchableOpacity,
 	StyleSheet,
 	KeyboardAvoidingView,
@@ -17,6 +16,7 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 
 const LoginScreen: React.FC = () => {
+	const navigation = useNavigation();
 	const [email, setEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 	const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
@@ -77,7 +77,9 @@ const LoginScreen: React.FC = () => {
 							<Text style={styles.buttonText}>Увійти</Text>
 						</Button>
 
-						<TouchableOpacity>
+						<TouchableOpacity
+							onPress={() => navigation.navigate("Registration")}
+						>
 							<Text style={styles.linkText}>
 								Немає аккаунту? Зареєструватися
 							</Text>

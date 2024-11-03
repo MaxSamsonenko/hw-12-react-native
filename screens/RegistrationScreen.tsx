@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import {
 	View,
 	Image,
@@ -16,6 +17,7 @@ import Button from "../components/Button";
 import AddBtnSvg from "../components/Svg/AddBtnSvg";
 
 const RegistrationScreen: React.FC = () => {
+	const navigation = useNavigation();
 	const [username, setUsername] = useState<string>("");
 	const [email, setEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
@@ -96,7 +98,7 @@ const RegistrationScreen: React.FC = () => {
 							<Text style={styles.buttonText}>Зареєструватися</Text>
 						</Button>
 
-						<TouchableOpacity>
+						<TouchableOpacity onPress={() => navigation.navigate("Login")}>
 							<Text style={styles.linkText}>Вже є акаунт? Увійти</Text>
 						</TouchableOpacity>
 					</View>
