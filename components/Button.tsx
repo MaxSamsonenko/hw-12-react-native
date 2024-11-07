@@ -1,15 +1,30 @@
 import { FC } from "react";
-import { StyleSheet, View, TouchableOpacity, ViewStyle } from "react-native";
+import {
+	StyleSheet,
+	View,
+	TouchableOpacity,
+	StyleProp,
+	ViewStyle,
+} from "react-native";
 
 type Props = {
 	children: React.ReactNode;
 	buttonStyles?: ViewStyle;
 	onPress: () => void;
+	outerStyles?: StyleProp<ViewStyle>;
 };
 
-const Button: FC<Props> = ({ children, onPress, buttonStyles }) => {
+const Button: FC<Props> = ({
+	children,
+	onPress,
+	buttonStyles,
+	outerStyles,
+}) => {
 	return (
-		<TouchableOpacity style={[styles.button, buttonStyles]} onPress={onPress}>
+		<TouchableOpacity
+			style={[styles.button, buttonStyles, outerStyles]}
+			onPress={onPress}
+		>
 			{children}
 		</TouchableOpacity>
 	);

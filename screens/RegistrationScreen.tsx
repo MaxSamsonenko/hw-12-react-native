@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import {
 	View,
 	Image,
@@ -16,8 +17,23 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 import AddBtnSvg from "../components/Svg/AddBtnSvg";
 
+type RootStackParamList = {
+	Home: {
+		screen: "HomeTabs";
+		params: {
+			screen: "Posts" | "CreatePosts" | "Profile";
+			params: {
+				username: string;
+				email: string;
+			};
+		};
+	};
+	Login: undefined;
+};
+type NavigationProps = StackNavigationProp<RootStackParamList>;
+
 const RegistrationScreen: React.FC = () => {
-	const navigation = useNavigation();
+	const navigation = useNavigation<NavigationProps>();
 	const [username, setUsername] = useState<string>("");
 	const [email, setEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
@@ -27,6 +43,14 @@ const RegistrationScreen: React.FC = () => {
 		console.log(
 			`Username: ${username}, Email: ${email}, password: ${password}`
 		);
+		navigation.navigate("Home", {
+			screen: "HomeTabs",
+			params: {
+				screen: "Posts",
+				params: { username, email },
+			},
+		});
+
 		setUsername("");
 		setEmail("");
 		setPassword("");
